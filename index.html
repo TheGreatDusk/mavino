@@ -1,15 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Composition Master - Learn Music Theory & Composition</title>
+    <link rel="stylesheet" href="public/css/style.css">
+    <link rel="stylesheet" href="public/css/animations.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div id="app" class="app-container">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="navbar-container">
+                <div class="navbar-brand">
+                    <i class="fas fa-music"></i>
+                    <span>Music Master</span>
+                </div>
+                <ul class="navbar-menu">
+                    <li><a href="#/dashboard" class="nav-link">Dashboard</a></li>
+                    <li><a href="#/learn" class="nav-link">Learn</a></li>
+                    <li><a href="#/practice" class="nav-link">Practice</a></li>
+                    <li><a href="#/editor" class="nav-link">Create</a></li>
+                    <li><a href="#/profile" class="nav-link">Profile</a></li>
+                </ul>
+                <div class="navbar-stats">
+                    <div class="stat-item">
+                        <i class="fas fa-fire"></i>
+                        <span id="streak-count">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-star"></i>
+                        <span id="xp-count">0</span>
+                    </div>
+                </div>
+            </div>
+        </nav>
 
-  <!DOCTYPE html>
-  <html lang="en">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Lorcana Card Tracker</title>
-    </head>
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard View -->
+            <section id="dashboard-view" class="view">
+                <div class="container">
+                    <div class="dashboard-header">
+                        <h1>Welcome Back!</h1>
+                        <p>Continue your musical journey</p>
+                    </div>
 
-    <body>
-      <div id="root"></div>
-      <script type="module" src="/src/main.tsx"></script>
-    </body>
-  </html>
-  
+                    <div class="dashboard-grid">
+                        <!-- Stats Cards -->
+                        <div class="stats-section">
+                            <div class="stat-card primary">
+                                <i class="fas fa-graduation-cap"></i>
+                                <h3>Lessons Completed</h3>
+                                <p class="stat-value" id="lessons-completed">0</p>
+                            </div>
+                            <div class="stat-card success">
+                                <i class="fas fa-clock"></i>
+                                <h3>Learning Time</h3>
+                                <p class="stat-value" id="learning-time">0h</p>
+                            </div>
+                            <div class="stat-card warning">
+                                <i class="fas fa-fire"></i>
+                                <h3>Current Streak</h3>
+                                <p class="stat-value" id="current-streak">0</p>
+                            </div>
+                            <div class="stat-card info">
+                                <i class="fas fa-chart-line"></i>
+                                <h3>Average Score</h3>
+                                <p class="stat-value" id="avg-score">0%</p>
+                            </div>
+                        </div>
+
+                        <!-- Quick Actions -->
+                        <div class="actions-section">
+                            <div class="section-title">Quick Actions</div>
+                            <button class="action-btn" id="continue-learning-btn">
+                                <i class="fas fa-play-circle"></i>
+                                <span>Continue Learning</span>
+                            </button>
+                            <button class="action-btn" id="start-practice-btn">
+                                <i class="fas fa-guitar"></i>
+                                <span>Start Practice</span>
+                            </button>
+                            <button class="action-btn" id="view-progress-btn">
+                                <i class="fas fa-chart-bar"></i>
+                                <span>View Progress</span>
+                            </button>
+                        </div>
+
+                        <!-- Recent Activities -->
+                        <div class="activities-section">
+                            <div class="section-title">Recent Activities</div>
+                            <div id="activities-list" class="activities-list"></div>
+                        </div>
+
+                        <!-- Achievements -->
+                        <div class="achievements-section">
+                            <div class="section-title">Achievements</div>
+                            <div id="achievements-container" class="achievements-grid"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Learn View -->
+            <section id="learn-view" class="view">
+                <div class="container">
+                    <div class="learn-header">
+                        <h1>Learning Paths</h1>
+                        <p>Choose a course and start learning</p>
+                    </div>
+
+                    <div class="courses-grid" id="courses-grid"></div>
+                </div>
+            </section>
+
+            <!-- Practice View -->
+            <section id="practice-view" class="view">
+                <div class="container">
+                    <div class="practice-header">
+                        <h1>Practice Modes</h1>
+                        <p>Improve your skills with our practice sessions</p>
+                    </div>
+
+                    <div class="practice-modes">
+                        <div class="mode-card" data-mode="personalized">
+                            <i class="fas fa-user-check"></i>
+                            <h3>Personalized</h3>
+                            <p>Get tailored lessons based on your progress</p>
+                        </div>
+                        <div class="mode-card" data-mode="review">
+                            <i class="fas fa-sync-alt"></i>
+                            <h3>Review</h3>
+                            <p>Review previously learned material</p>
+                        </div>
+                        <div class="mode-card" data-mode="ear-training">
+                            <i class="fas fa-ear"></i>
+                            <h3>Ear Training</h3>
+                            <p>Develop your listening and recognition skills</p>
+                        </div>
+                        <div class="mode-card" data-mode="composition">
+                            <i class="fas fa-compose"></i>
+                            <h3>Composition</h3>
+                            <p>Create your own musical compositions</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Editor View -->
+            <section id="editor-view" class="view">
+                <div class="container">
+                    <div class="editor-header">
+                        <h1>Course Editor</h1>
+                        <button class="btn btn-primary" id="new-course-btn">
+                            <i class="fas fa-plus"></i> New Course
+                        </button>
+                    </div>
+
+                    <div class="editor-content" id="editor-content">
+                        <div class="courses-list" id="editor-courses-list"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Profile View -->
+            <section id="profile-view" class="view">
+                <div class="container">
+                    <div class="profile-container">
+                        <div class="profile-card">
+                            <div class="profile-header">
+                                <div class="profile-avatar" id="profile-avatar">U</div>
+                                <div class="profile-info">
+                                    <h2 id="profile-username">Username</h2>
+                                    <p id="profile-level">Level 1</p>
+                                </div>
+                            </div>
+
+                            <div class="profile-stats">
+                                <div class="stat">
+                                    <span class="label">Total XP</span>
+                                    <span class="value" id="profile-xp">0</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="label">Best Streak</span>
+                                    <span class="value" id="profile-best-streak">0</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="label">Courses Completed</span>
+                                    <span class="value" id="profile-courses-completed">0</span>
+                                </div>
+                            </div>
+
+                            <div class="profile-actions">
+                                <button class="btn btn-secondary" id="export-data-btn">
+                                    <i class="fas fa-download"></i> Export Data
+                                </button>
+                                <button class="btn btn-secondary" id="import-data-btn">
+                                    <i class="fas fa-upload"></i> Import Data
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="preferences-card">
+                            <h3>Preferences</h3>
+                            <div class="preference-item">
+                                <label for="theme-toggle">Dark Mode</label>
+                                <input type="checkbox" id="theme-toggle" class="toggle">
+                            </div>
+                            <div class="preference-item">
+                                <label for="notifications-toggle">Notifications</label>
+                                <input type="checkbox" id="notifications-toggle" class="toggle" checked>
+                            </div>
+                            <div class="preference-item">
+                                <label for="sound-toggle">Sound Effects</label>
+                                <input type="checkbox" id="sound-toggle" class="toggle" checked>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Modals -->
+        <div id="modal-container"></div>
+
+        <!-- Notifications -->
+        <div id="notifications-container" class="notifications-container"></div>
+    </div>
+
+    <script type="module" src="public/js/app.js"></script>
+</body>
+</html>
